@@ -56,7 +56,8 @@ class Main(QWidget):
                 btn = QPushButton()
                 btn.setIcon(QIcon('recycle bin.png'))
                 btn.setFixedWidth(20)
-                btn.clicked.connect(partial(self.delete, btn, len(messages)+1))
+                btn.clicked.connect(
+                    partial(self.delete, btn, len(messages)+1, btn, label))
                 self.ui.vl_messages.addWidget(btn, len(messages)+1, 0)
 
                 msg_box = QMessageBox()
@@ -87,7 +88,7 @@ class Main(QWidget):
         if response:
             msg_box = QMessageBox()
 
-            self.msg_box("all of messages deleted!")
+            msg_box("all of messages deleted!")
             msg_box.exec_()
             self.readMessages()
 
@@ -121,3 +122,4 @@ if __name__ == "__main__":
     app = QApplication([])
     widget = Main()
     sys.exit(app.exec_())
+
